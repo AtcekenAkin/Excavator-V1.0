@@ -28,3 +28,10 @@ Full-Page Shots: Full screen size shots with page.GetLayoutMetrics and emulation
 CLI Feedback: Status code reviews to real-time process tracking in the terminal.
 
 So basicly v2 is more advanced, have some new features to bypass bot controls and have better capabileties.
+
+Usage:
+ TO extract html -html
+TO extract links -links
+To tak screenshot -screenshot
+To indicate url -url
+URL must be this form "https://example.com"
