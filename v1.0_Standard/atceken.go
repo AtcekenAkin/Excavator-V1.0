@@ -50,9 +50,20 @@ func main() {
 
 	c := colly.NewCollector()
 
+	//Bot kısıtlamalarına takılmamak için
+
+	c.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+
 	//Bir istek yapmadan önce  "Ziyaret ediliyor..."	 yazdır
 	c.OnRequest(func(r *colly.Request) {
 		fmt.Printf(" [%s] Ziyaret ediliyor...\n", r.URL)
+	})
+
+	c.Limit(&colly.LimitRule{
+
+		DomainGlob:  "*",
+		RandomDelay: 2 * time.Second,
+		Parallelism: 1,
 	})
 
 	c.OnError(func(r *colly.Response, err error) {
@@ -87,7 +98,7 @@ func main() {
 }
 
 func createFileName(url string) string {
-	r := strings.NewReplacer("http://", "", "https://", "", "/", "_", ":", "", ".", "_")
+	r := strings.NewReplacer("http://", "", "https://", "", "/", "_", ":", "", ".", "_", "?", "_", "=", "_", "&", "_", "*", "_", "|", "_", "\"", "_", "<", "_", ">", "_")
 	return r.Replace(url)
 }
 
